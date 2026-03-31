@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install)",
+      "Bash(node_modules/.bin/next --version)",
+      "Bash(npx ng build --configuration development)"
+    ]
+  }
+}

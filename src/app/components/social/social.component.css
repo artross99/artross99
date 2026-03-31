@@ -1,0 +1,34 @@
+.container {
+  position: fixed;
+  left: 63px;
+  bottom: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  z-index: 3;
+}
+
+.container > a {
+  display: flex;
+}
+
+@media screen and (max-height: 746px) {
+  .container {
+    bottom: unset;
+    top: 32px;
+    left: unset;
+    right: 24px;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    bottom: unset;
+    top: 32px;
+    left: unset;
+    right: 24px;
+    flex-direction: column;
+  }
+}
