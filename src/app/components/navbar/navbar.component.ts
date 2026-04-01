@@ -1,18 +1,22 @@
-import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
-
-const PETAL_COUNT = 300;
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+  OnDestroy,
+} from "@angular/core";
 
 const BLOW_ANIMATIONS = [
-  'blow-soft-right',
-  'blow-medium-right',
-  'blow-soft-left',
-  'blow-medium-left',
+  "blow-soft-right",
+  "blow-medium-right",
+  "blow-soft-left",
+  "blow-medium-left",
 ];
 
 const COLORS = [
-  'linear-gradient(120deg, rgb(255, 189, 189), rgb(227, 170, 181))',
-  'linear-gradient(120deg, rgba(255, 183, 197, 0.9), rgba(255, 197, 208, 0.9))',
-  'linear-gradient(120deg, rgb(212, 152, 163), rgb(242, 185, 196))',
+  "linear-gradient(120deg, rgb(255, 189, 189), rgb(227, 170, 181))",
+  "linear-gradient(120deg, rgba(255, 183, 197, 0.9), rgba(255, 197, 208, 0.9))",
+  "linear-gradient(120deg, rgb(212, 152, 163), rgb(242, 185, 196))",
 ];
 
 function rand(min: number, max: number) {
@@ -24,23 +28,23 @@ function randInt(min: number, max: number) {
 }
 
 @Component({
-  selector: 'app-navbar',
+  selector: "app-navbar",
   standalone: true,
   imports: [],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  templateUrl: "./navbar.component.html",
+  styleUrl: "./navbar.component.css",
 })
 export class NavbarComponent implements AfterViewInit, OnDestroy {
-  @ViewChild('navbarRef') navbarRef!: ElementRef<HTMLDivElement>;
+  @ViewChild("navbarRef") navbarRef!: ElementRef<HTMLDivElement>;
 
   private timeouts: ReturnType<typeof setTimeout>[] = [];
 
   ngAfterViewInit() {
     const navbar = this.navbarRef.nativeElement;
 
-    const spawnPetals = () => {
-      const petal = document.createElement('div');
-      petal.className = 'sakura';
+    const spawnPetals = (index = 0) => {
+      const petal = document.createElement("div");
+      petal.className = "sakura";
 
       const width = randInt(8, 14);
       const height = randInt(8, 14);
@@ -70,20 +74,18 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
       navbar.appendChild(petal);
       const t = setTimeout(() => petal.remove(), fallDuration * 1000);
       this.timeouts.push(t);
+
+      setTimeout(() => spawnPetals(index + 1), 200);
     };
 
-    for (let i = 0; i < PETAL_COUNT; i++) {
-      const t = setTimeout(spawnPetals, i * 200);
-      this.timeouts.push(t);
-      spawnPetals();
-    }
+    spawnPetals();
   }
 
   ngOnDestroy() {
-    this.timeouts.forEach(t => clearTimeout(t));
+    this.timeouts.forEach((t) => clearTimeout(t));
     const navbar = this.navbarRef?.nativeElement;
     if (navbar) {
-      navbar.querySelectorAll('.sakura').forEach(p => p.remove());
+      navbar.querySelectorAll(".sakura").forEach((p) => p.remove());
     }
   }
 }

@@ -1,0 +1,42 @@
+.page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.back-btn {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  display: block;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(to right, #f472b6, #fca5a5, #facc15);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.back-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 24px rgba(244, 114, 182, 0.4);
+}
+
+.back-btn img {
+  display: block;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.coming-soon {
+  font-family: var(--font-seymour-one), serif;
+  font-size: clamp(32px, 6vw, 72px);
+  color: #fff;
+  text-align: center;
+  letter-spacing: 4px;
+}
